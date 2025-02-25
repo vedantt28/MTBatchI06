@@ -605,8 +605,6 @@ mysql> select * from bankcustomer;
 +-------+-----------+------+
 5 rows in set (0.00 sec)
 
-mysql> select * frm address;
-ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'frm address' at line 1
 mysql> select * from address;
 +-------+------------+-------------+
 | accno | city       | state       |
@@ -630,7 +628,7 @@ mysql> select a.accno,a.name,a.balance,b.firstname,b.age,c.city,c.state from ban
 |   105 | hdfc  |   14545 | jai       |   31 | amritsar   | punjab      |
 +-------+-------+---------+-----------+------+------------+-------------+
 5 rows in set (0.03 sec)
-
+====================================================================================================================================
 mysql>
 ----------------**-----------**------------------------
 Different Types of SQL JOINs
@@ -677,12 +675,12 @@ Note: In some databases RIGHT JOIN is called RIGHT OUTER JOIN.
 
 Note: The RIGHT JOIN keyword returns all records from the right table (Employees), even if there are no matches in the left table (Orders).
 -----------------------------------------------------------------
-SQL FULL OUTER JOIN Keyword
+4. SQL FULL OUTER JOIN Keyword
 The FULL OUTER JOIN keyword returns all records when there is a match in left (table1) or right (table2) table records.
 
 Tip: FULL OUTER JOIN and FULL JOIN are the same.
 
-it cant be used in mySQL
+IMPORTANT : this cant be used in mySQL
 FULL OUTER JOIN Syntax  --> it cant be used in mySQL
 SELECT column_name(s)
 FROM table1
@@ -699,8 +697,17 @@ SELECT table2.id, table1.name, table2.city
 FROM table1
 RIGHT JOIN table2 ON table1.id = table2.id;
 
+
 Example:-
-mysql> SELECT a1.*, b1.* FROM bank as a1 LEFT JOIN bankcustomer as b1 ON a1.accno = b1.accno UNION SELECT a1.*, b1.* FROM bank as a1 RIGHT JOIN bankcustomer as b1 ON a1.accno = b1.accno;
+mysql> SELECT a1.*, b1.* 
+       FROM bank as a1 
+       LEFT JOIN bankcustomer as b1 
+       ON a1.accno = b1.accno 
+       UNION 
+       SELECT a1.*, b1.* FROM bank as a1 
+       RIGHT JOIN bankcustomer as b1 
+       ON a1.accno = b1.accno;
+
 +-------+-------+---------+-------+-----------+------+
 | accno | name  | balance | accno | FirstName | Age  |
 +-------+-------+---------+-------+-----------+------+
@@ -762,7 +769,7 @@ mysql> select * from bankcustomer;
 +-------+-----------+------+
 5 rows in set (0.00 sec)
 
-mysql> select  a.*,b.* from bank as a inner join bankcustomer as b on a.accno = b.accno;
+1.mysql> select  a.*,b.* from bank as a inner join bankcustomer as b on a.accno = b.accno;
 +-------+-------+---------+-------+-----------+------+
 | accno | name  | balance | accno | FirstName | Age  |
 +-------+-------+---------+-------+-----------+------+
@@ -776,7 +783,7 @@ mysql> select  a.*,b.* from bank as a inner join bankcustomer as b on a.accno = 
 
 Explaination : here we can see data whose row value whose  bank accno = bankcustumer accno  only those columns are joined ;
 -------------------------------------------------------------------------------------------------------------------------------
-mysql> select  a.*,b.* from bank as a left join bankcustomer as b on a.accno = b.accno;
+2.mysql> select  a.*,b.* from bank as a left join bankcustomer as b on a.accno = b.accno;
 +-------+-------+---------+-------+-----------+------+
 | accno | name  | balance | accno | FirstName | Age  |
 +-------+-------+---------+-------+-----------+------+
@@ -791,9 +798,9 @@ mysql> select  a.*,b.* from bank as a left join bankcustomer as b on a.accno = b
 +-------+-------+---------+-------+-----------+------+
 8 rows in set (0.01 sec)
 
-Explaination : here we can see data whose row value whose  bank accno = bankcustumer accno  only those columns are joined and which also includes all the other left table data;
+Explaination : here we can see data whose row value whose  bank accno = bankcustumer accno  only those columns are joined and join TABLE also includes all the other left table data;
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-mysql> select  a.*,b.* from bank as a right join bankcustomer as b on a.accno = b.accno;
+3.mysql> select  a.*,b.* from bank as a right join bankcustomer as b on a.accno = b.accno;
 +-------+-------+---------+-------+-----------+------+
 | accno | name  | balance | accno | FirstName | Age  |
 +-------+-------+---------+-------+-----------+------+
@@ -805,9 +812,18 @@ mysql> select  a.*,b.* from bank as a right join bankcustomer as b on a.accno = 
 +-------+-------+---------+-------+-----------+------+
 5 rows in set (0.00 sec)
 
-Explaination : here we can see data whose row value whose  bank accno = bankcustumer accno  only those columns are joined and which also includes all the other right table data;
+Explaination : here we can see data whose row value whose  bank accno = bankcustumer accno  only those columns are joined and join TABLE also includes all the other right table data;
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-mysql> SELECT a1.*, b1.* FROM bank as a1 LEFT JOIN bankcustomer as b1 ON a1.accno = b1.accno UNION SELECT a1.*, b1.* FROM bank as a1 RIGHT JOIN bankcustomer as b1 ON a1.accno = b1.accno;
+4.Example:-
+mysql> SELECT a1.*, b1.* 
+       FROM bank as a1 
+       LEFT JOIN bankcustomer as b1 
+       ON a1.accno = b1.accno 
+       UNION 
+       SELECT a1.*, b1.* FROM bank as a1 
+       RIGHT JOIN bankcustomer as b1 
+       ON a1.accno = b1.accno;
+
 +-------+-------+---------+-------+-----------+------+
 | accno | name  | balance | accno | FirstName | Age  |
 +-------+-------+---------+-------+-----------+------+
@@ -821,8 +837,8 @@ mysql> SELECT a1.*, b1.* FROM bank as a1 LEFT JOIN bankcustomer as b1 ON a1.accn
 |   110 | sbi   |    1234 |  NULL | NULL      | NULL |
 +-------+-------+---------+-------+-----------+------+
 8 rows in set (0.00 sec)
-
-Explaination : here we can see data whose row value whose  bank accno = bankcustumer accno  only those columns are joined and which also includes all the other right table data and all other left table data;
+-------------------------------------------------------------------------
+Explaination : here we can see data whose row value whose  bank accno = bankcustumer accno  only those columns are joined and join TABLE also includes all the other right table data and all other left table data;
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ========================================================
 1. Simple Cloning
