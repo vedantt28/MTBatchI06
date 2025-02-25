@@ -839,11 +839,62 @@ mysql> SELECT a1.*, b1.*
 8 rows in set (0.00 sec)
 -------------------------------------------------------------------------
 Explaination : here we can see data whose row value whose  bank accno = bankcustumer accno  only those columns are joined and join TABLE also includes all the other right table data and all other left table data;
---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-========================================================
+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+========================================================================================================================================================================================
+5.SQL Self Join
+A self join is a regular join, but the table is joined with itself.
+
+Self Join Syntax
+SELECT column_name(s)
+FROM table1 T1, table1 T2
+WHERE condition;
+T1 and T2 are different table aliases for the same table.
+
+OR
+SELECT column_name(s)
+FROM table1 AS T1, table1 AS T2
+WHERE condition;
+
+mysql> SELECT * FROM company;
++-------+--------+-----------+
+| empid | name   | managerid |
++-------+--------+-----------+
+|   101 | sandip |       104 |
+|   102 | kiran  |       104 |
+|   103 | sunil  |       104 |
+|   104 | amit   |       105 |
+|   105 | nitu   |       106 |
++-------+--------+-----------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT
+    ->     e.empid AS Employee,
+    ->     e.name AS EmployeeName,
+    ->     m.empid AS ManagerID,
+    ->     m.name AS ManagerName
+    -> FROM
+    ->     company AS e
+    -> JOIN
+    ->     company AS m
+    -> ON
+    ->     e.managerid = m.empid;
++----------+--------------+-----------+-------------+
+| Employee | EmployeeName | ManagerID | ManagerName |
++----------+--------------+-----------+-------------+
+|      103 | sunil        |       104 | amit        |
+|      102 | kiran        |       104 | amit        |
+|      101 | sandip       |       104 | amit        |
+|      104 | amit         |       105 | nitu        |
++----------+--------------+-----------+-------------+
+4 rows in set (0.03 sec)
+
+Explaination :- 
+============================================================================================================================================================================================================================
+============================================================================================================================================================================================================================
 1. Simple Cloning
 In this method, the clone table creates a copy of the original table’s structure and data, but constraints like primary keys, unique keys, and auto-increment properties are not preserved.
 
+Simple cloning in SQL lacks preservation of unique constraints and auto-increment properties,
 Syntax
 
 CREATE TABLE clone_table SELECT * FROM original_table;
@@ -854,7 +905,19 @@ Records: 8  Duplicates: 0  Warnings: 0
 
 mysql> select * from bank1;
 -----------------------------------------------------------------
+2. Shallow Cloning
+Shallow cloning is the method in which the clone table gets the same structure as the original table but it does not inherits or copy the data from the original table. In other words, we will have the empty table including indices such as primary key, unique key, and auto_increment. It also preserves constraints like primary keys and unique keys.
 
+Syntax:
+CREATE TABLE clone_table  LIKE original_table;
+--------------------------------------------------------------------------
+3. Deep Cloning
+This method is widely used for creating the clone tables in SQL as it inherits all the properties of original table including indices such as primary key, unique, and auto_increment as well as inherits the existing data from the original table.
 
+Syntax
+
+CREATE TABLE clone_table LIKE original_table;
+INSERT INTO clone_table SELECT * FROM original_table;
+------------------------------------------------------------------------------
 
 
