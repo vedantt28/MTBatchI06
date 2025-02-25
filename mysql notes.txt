@@ -1,0 +1,579 @@
+Notes:
+1.Wildcard characters
+A wildcard character is used to substitute one or more characters in a string.
+
+Wildcard characters are used with the LIKE operator. The LIKE operator is used in a WHERE clause to search for a specified pattern in a column.
+
+The % wildcard represents any number of characters, even zero characters.
+-------
+ExampleGet your own SQL Server:
+Return all customers that starts with the letter 'a':
+SELECT * FROM Customers
+WHERE CustomerName LIKE 'a%';
+---------
+select * from student where name like 's%';  --> these will select characters whose name is starting with s;
+
+select * from student where name like '%mer%'; --> Return all customers that contains the pattern 'mer':
+
+The _ wildcard represents a single character.
+Return all customers with a City starting with any character, followed by "ondon":
+WHERE City LIKE '_ondon';
+
+Return all customers with a City starting with "L", followed by any 3 characters, ending with "on":
+SELECT * FROM Customers
+WHERE City LIKE 'L___on';
+==================================================================================================================================================
+The SQL SELECT DISTINCT Statement
+The SELECT DISTINCT statement is used to return only distinct (different) values.
+
+Select all the different countries from the "Customers" table:
+SELECT DISTINCT Country FROM Customers;
+==========================================================================================================================================
+The SQL ORDER BY
+The ORDER BY keyword is used to sort the result-set in ascending or descending order.
+
+DEFAULT IT IS ASCENDING ORDER;
+mysql> select * FROM STUDENT order by name ;
++--------+---------+-----------+------+------+------+------+------+
+| rollno | name    | address   | phy  | bio  | chem | tot  | avg  |
++--------+---------+-----------+------+------+------+------+------+
+|    102 | Rohan   | Bangalore |   78 |   84 |   73 |  235 |   78 |
+|    101 | sandip  | Bangalore |   88 |   74 |   83 |  245 |   82 |
+|    103 | Sarvesh | Pune      |   68 |   64 |   63 |  195 |   65 |
+|    104 | Ved     | Dubai     |   78 |   84 |   73 |  235 |   78 |
++--------+---------+-----------+------+------+------+------+------+
+
+iF WE HAVE TO ORDER BY DESCENDING;
+mysql> select * FROM STUDENT order by name DESC ;
++--------+---------+-----------+------+------+------+------+------+
+| rollno | name    | address   | phy  | bio  | chem | tot  | avg  |
++--------+---------+-----------+------+------+------+------+------+
+|    104 | Ved     | Dubai     |   78 |   84 |   73 |  235 |   78 |
+|    103 | Sarvesh | Pune      |   68 |   64 |   63 |  195 |   65 |
+|    101 | sandip  | Bangalore |   88 |   74 |   83 |  245 |   82 |
+|    102 | Rohan   | Bangalore |   78 |   84 |   73 |  235 |   78 |
++--------+---------+-----------+------+------+------+------+------+
+4 rows in set (0.00 sec)
+-----------------------------------------------------------------------------------
+For string values the ORDER BY keyword will order alphabetically
+==============================================================================================================
+The SQL GROUP BY Statement
+The GROUP BY statement groups rows that have the same values into summary rows, like "find the number of customers in each country".
+
+The GROUP BY statement is often used with aggregate functions (COUNT(), MAX(), MIN(), SUM(), AVG()) to group the result-set by one or more columns.
+
+NOTES: WE HAVE to USE the COLUMN NAME FOR WHICH WE HAVE TO DO GROUP BY;
+-------------------------------------
+GROUP BY Syntax
+SELECT column_name(s)
+FROM table_name
+WHERE condition
+GROUP BY column_name(s)
+ORDER BY column_name(s);
+------------------------------------------------------------------------------------------------
+mysql> SELECT DEPT,COUNT(*) FROM EMPLOYEE GROUP BY DEPT;   --> THESE COUNTS EMPLOYEE ACCORDING TO THERE DEPARTMENT
++------------+----------+
+| DEPT       | COUNT(*) |
++------------+----------+
+| it         |        1 |
+| JAVA       |        2 |
+| PRODUCTION |        1 |
+| MANAGER    |        1 |
++------------+----------+
+4 rows in set (0.00 sec)
+
+mysql> SELECT NAME,COUNT(*) FROM EMPLOYEE GROUP BY NAME;  --> COUNTS ACCORDING TO THERE NAME
++---------+----------+
+| NAME    | COUNT(*) |
++---------+----------+
+| SANDIP  |        1 |
+| VED     |        2 |
+| ATHAVAA |        1 |
+| ADESH   |        1 |
+| DEV     |        1 |
++---------+----------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT DEPT,SUM(SALARY) FROM EMPLOYEE GROUP BY DEPT;  --> GIVES SUM OF SALARY OF EVERY DEPARTMENT;
++------------+---------------+
+| DEPT       | SUM(SALARY)   |
++------------+---------------+
+| it         |         10000 |
+| JAVA       | 1000000995904 |
+| PRODUCTION |       5870000 |
+| MANAGER    |      10000000 |
+| MLA        |  999999995904 |
++------------+---------------+
+5 rows in set (0.01 sec)
+-----------------------------------------
+3.HAVING KEYWORD:
+NOTE : HAVNG IS SAME AS WHERE KEYWORD BUT WHERE CANT BE USED WITH AGREGATE FUNCTIONS;
+An aggregate function is a function that performs a calculation on a set of values, and returns a single value.
+
+The GROUP BY statement is often used with aggregate functions (COUNT(), MAX(), MIN(), SUM(), AVG())
+----------------------------------------------------------------------------------------------------------------------------------
+mysql> select count(*) from EMPLOYEE;   --> THESE RETUENS THE COUNT OF THE NUMBER OF EMPLOYEES I.E RETURNS NUMBER OF ROWS OF DATA
++----------+
+| count(*) |
++----------+
+|        7 |
++----------+
+1 row in set (0.04 sec)
+======================================================================================
+The SQL HAVING Clause
+The HAVING clause was added to SQL because the WHERE keyword cannot be used with aggregate functions.
+NOTE : HAVNG IS SAME AS WHERE BUT WHERE CANT BE USED WITH AGREGATE FUNCTIONS;
+
+HAVING Syntax
+SELECT column_name(s)
+FROM table_name
+WHERE condition
+GROUP BY column_name(s)
+HAVING condition
+ORDER BY column_name(s);
+
+==================================================================================================
+mysql> select count(*) from EMPLOYEE;   --> THESE RETUENS THE COUNT OF THE NUMBER OF EMPLOYEES I.E RETURNS NUMBER OF ROWS OF DATA
++----------+
+| count(*) |
++----------+
+|        7 |
++----------+
+1 row in set (0.04 sec)
+
+===================================================================================================================================================
+SQL TOP, LIMIT, FETCH FIRST or ROWNUM Clause
+
+Note: Not all database systems support the SELECT TOP clause. MySQL supports the LIMIT clause to select a limited number of records, while Oracle uses FETCH FIRST n ROWS ONLY and ROWNUM.
+
+Select the first 3 records of the Customers table:
+SELECT * FROM Customers LIMIT 3;
+
+mysql> SELECT * FROM EMPLOYEE LIMIT 3;
++-------+---------+------+---------------+
+| EMPNO | NAME    | DEPT | SALARY        |
++-------+---------+------+---------------+
+|   101 | SANDIP  | it   |         10000 |
+|   102 | VED     | JAVA | 1000000000000 |
+|   103 | ATHAVAA | JAVA |       1000000 |
++-------+---------+------+---------------+
+3 rows in set (0.00 sec)
+======================================================================================================================
+------------------------------------------
+SQL IN Keyword
+IN
+The IN command allows you to specify multiple values in a WHERE clause.
+The IN operator is a shorthand for multiple OR conditions.
+------------***-*-**-*-*-**-*-*-
+THESE UPDATES THE EMPLOYEE SALARY WHO HAV EMPLOYNO 101,102,103
+mysql> UPDATE EMPLOYEE SET SALARY=9000 WHERE EMPNO(101,102,103);
+ERROR 1305 (42000): FUNCTION batchi06.EMPNO does not exist
+mysql> UPDATE EMPLOYEE SET SALARY=9000 WHERE EMPNO IN (101,102,103);
+Query OK, 3 rows affected (0.07 sec)
+Rows matched: 3  Changed: 3  Warnings: 0
+
+mysql> SELECT * FROM EMPLOYEE;
++-------+---------+------------+---------------+
+| EMPNO | NAME    | DEPT       | SALARY        |
++-------+---------+------------+---------------+
+|   101 | SANDIP  | it         |          9000 |
+|   102 | VED     | JAVA       |          9000 |
+|   103 | ATHAVAA | JAVA       |          9000 |
+|   104 | ADESH   | PRODUCTION |       5870000 |
+|   105 | DEV     | MANAGER    |      10000000 |
+|   106 | VED     | MLA        | 1000000000000 |
+|   107 | VED     | A          |          1000 |
++-------+---------+------------+---------------+
+7 rows in set (0.00 sec)
+===========================================================================================================================
+The SQL BETWEEN Operator
+The BETWEEN operator selects values within a given range. The values can be numbers, text, or dates.
+
+The BETWEEN operator is inclusive: begin and end values are included. 
+------------------------------------------------
+Syntax
+SELECT column_name(s)
+FROM table_name
+WHERE column_name BETWEEN value1 AND value2;
+
+mysql> SELECT * FROM EMPLOYEE WHERE SALARY BETWEEN 9000 AND 5870000;
++-------+---------+------------+---------+
+| EMPNO | NAME    | DEPT       | SALARY  |
++-------+---------+------------+---------+
+|   101 | SANDIP  | it         |    9000 |
+|   102 | VED     | JAVA       |    9000 |
+|   103 | ATHAVAA | JAVA       |    9000 |
+|   104 | ADESH   | PRODUCTION | 5870000 |
++-------+---------+------------+---------+
+4 rows in set (0.02 sec)
+------------------------------------------------======================================================================
+The UPDATE statement is used to modify the existing records in a table.
+
+UPDATE Syntax
+UPDATE table_name
+SET column1 = value1, column2 = value2, ...
+WHERE condition;
+
+Note: Be careful when updating records in a table! Notice the WHERE clause in the UPDATE statement. 
+The WHERE clause specifies which record(s) that should be updated. If you omit the WHERE clause, all records in the table will be updated!
+
+============================*==========================*================================================================
+What is SQL Subquery?
+In SQL, a subquery can be defined as a query embedded within another query. It is often used in the WHERE, HAVING, or FROM clauses of a statement.
+Subqueries are commonly used with SELECT, UPDATE, INSERT, and DELETE statements to achieve complex filtering and data manipulation.
+
+While there is no universal syntax for subqueries, they are commonly used in SELECT statements as follows.
+This general syntax allows the outer query to use the results of the inner subquery for filtering or other operations.
+
+Syntax
+SELECT column_name
+FROM table_name
+WHERE column_name expression operator 
+    (SELECT column_name FROM table_name WHERE ...);
+
+
+NOTE: FIRST INNER SUB QUERY WILL BE EXECUTED
+-------------------
+EXAMPLE: THESE RETURNS THE EMPLOYEE DETAILS WHOSE SALARY IS LESS THAN ADESH (INNER QUERY WILL EXECUTE FIRST)
+
+mysql> SELECT * FROM EMPLOYEE WHERE SALARY < ( SELECT SALARY FROM EMPLOYEE WHERE NAME='ADESH');
++-------+---------+------+--------+
+| EMPNO | NAME    | DEPT | SALARY |
++-------+---------+------+--------+
+|   101 | SANDIP  | it   |   9000 |
+|   102 | VED     | JAVA |   9000 |
+|   103 | ATHAVAA | JAVA |   9000 |
+|   107 | VED     | A    |   1000 |
++-------+---------+------+--------+
+4 rows in set (0.04 s
+
+====================================================================================================
+SQL AS Keyword
+
+AS
+The AS command is used to rename a column or table with an alias.
+
+An alias only exists for the duration of the query.
+
+Alias for Columns
+The following SQL statement creates two aliases, one for the CustomerID column and one for the CustomerName column:
+
+ExampleGet your own SQL Server
+SELECT CustomerID AS ID, CustomerName AS Customer
+FROM Customers;
+
+======================================================================================================================
+=======================================VIEWS in SQL===========================================================
+SQL CREATE VIEW Statement
+In SQL, a view is a virtual table based on the result-set of an SQL statement.
+A view contains rows and columns, just like a real table. The fields in a view are fields from one or more real tables in the database.
+You can add SQL statements and functions to a view and present the data as if the data were coming from one single table.
+
+A view is created with the CREATE VIEW statement. 
+
+CREATE VIEW Syntax
+CREATE VIEW view_name AS
+SELECT column1, column2, ...
+FROM table_name
+WHERE condition;
+------------------------------------------------------------------------------
+Note: A view always shows up-to-date data! The database engine recreates the view, every time a user queries it.
+
+A view can be updated with the CREATE OR REPLACE VIEW statement.
+------------------------------------------------------------------------------
+A view can be updated with the CREATE OR REPLACE VIEW statement.
+
+SQL CREATE OR REPLACE VIEW Syntax
+CREATE OR REPLACE VIEW view_name AS
+SELECT column1, column2, ...
+FROM table_name
+WHERE condition;
+
+A view is deleted with the DROP VIEW statement.
+SQL DROP VIEW Syntax
+DROP VIEW view_name;
+--------------------------------------------------------
+NOTE: Any operations done on view will also be reflected in the original table 
+      if we delete the main tbale then the view also gets deleted
+-------------------------------------------------------------------------------------------
+important : we can also view for another view (but using columns from  view_name not whole view)
+
+example:--------------------
+mysql> create view pqr as select abc;  --> gives error
+ERROR 1054 (42S22): Unknown column 'abc' in 'field list'
+
+mysql> create view pqr as select * from abc where accno BETWEEN 101 and 105;
+Query OK, 0 rows affected (0.09 sec)
+
+mysql> select * from pqr;
++-------+-------+---------+
+| accno | name  | balance |
++-------+-------+---------+
+|   101 | icici |   46865 |
+|   102 | icici |     465 |
+|   103 | icici |     605 |
+|   104 | hdfc  |   12345 |
+|   105 | hdfc  |   14545 |
++-------+-------+---------+
+5 rows in set (0.00 sec)
+--------------------------------------------------------
+
+===========================================================STRING FUNCTIONS  //// SQL Server Functions ==========================================================================================
+SQL String Functions are powerful tools that allow us to manipulate, format, and extract specific parts of text data in our database.
+
+Common SQL String Functions
+String functions are used to perform an operation on input string and return an output string. Following are the string functions defined in SQL:
+
+1. CONCAT(): Concatenate Strings
+The CONCAT() function is used to concatenate (combine) two or more strings into one string. It is useful when we want to merge fields like first and last names into a full name.
+
+Query:
+SELECT CONCAT('John', ' ', 'Doe') AS FullName;
+
+Output:
+John Doe
+-------------------------
+2. CHAR_LENGTH() / CHARACTER_LENGTH(): Find String Length
+The CHAR_LENGTH() or LENGTH() function returns the length of a string in characters. It’s essential for validating or manipulating text data, especially when you need to know how many characters a string contains.
+
+Query:
+SELECT CHAR_LENGTH('Hello') AS StringLength;
+Output:
+5
+-------------------------------------------------------------------------
+String Function
+--------------------------------
+1. CONCAT()
+Concatenates two or more strings together.
+Syntax:
+CONCAT(string1, string2, ...)
+Example:
+SELECT CONCAT('Hello', ' ', 'World') AS Result;
+-- Output: Hello World
+--------------------------------------------------------------------------------------------
+2. CONCAT_WS()
+Concatenates strings with a specified separator.
+Syntax:
+CONCAT_WS(separator, string1, string2, ...)
+Example:
+SELECT CONCAT_WS('-', '2024', '06', '17') AS Result;
+-- Output: 2024-06-17
+--------------------------------------------------------------------------------------
+3. SUBSTRING() or SUBSTR()
+Extracts a substring from a string.
+Syntax:
+SUBSTRING(string, start_position, length)
+Example:  : from 7th position i.e i+1=8th index of the string with length of substring 6
+
+SELECT SUBSTRING('MySQL String Functions', 7, 6) AS Result;
+-- Output: String
+
+mysql> select substring('Mysql string functions',7,6);
++-----------------------------------------+
+| substring('Mysql string functions',7,6) |
++-----------------------------------------+
+| string                                  |
++-----------------------------------------+
+1 row in set (0.02 sec)
+---------------------------------------------------------------------------------------------
+4. LENGTH()
+Returns the length of a string in bytes.
+Syntax:
+LENGTH(string)
+Example:
+SELECT LENGTH('MySQL') AS Result;
+-- Output: 5
+------------------------------------------------------------------------------------------------------
+5. CHAR_LENGTH()
+Returns the number of characters in a string.
+Syntax:
+CHAR_LENGTH(string)
+Example:
+SELECT CHAR_LENGTH('Hello') AS Result;
+-- Output: 5
+---------------------------------------------------------------------------------------------------
+6. LOWER() or LCASE()
+Converts a string to lowercase.
+Syntax:
+LOWER(string)
+Example:
+SELECT LOWER('MYSQL') AS Result;
+-- Output: mysql
+-------------------------------------------------------------------------------------------
+7. UPPER() or UCASE()
+Converts a string to uppercase.
+Syntax:
+UPPER(string)
+Example:
+SELECT UPPER('mysql') AS Result;
+-- Output: MYSQL
+------------------------------------------------------------------------------------------------
+8. TRIM()
+Removes leading and trailing spaces (or other characters) from a string.
+Syntax:
+TRIM([[BOTH | LEADING | TRAILING] 'removal_char' FROM] string)
+Example:
+SELECT TRIM('   MySQL   ') AS Result;
+-- Output: MySQL
+---------------------------------------------------------------------------------------
+9. REPLACE()
+Replaces occurrences of a substring within a string.
+Syntax:
+REPLACE(string, substring_to_replace, replacement_string)
+Example:
+SELECT REPLACE('I love PHP', 'PHP', 'MySQL') AS Result;
+-- Output: I love MySQL
+---------------------------------------------------------------------------------------
+10. INSTR()
+Returns the position of the first occurrence of a substring.
+Syntax:
+INSTR(string, substring)
+Example:
+SELECT INSTR('Hello World', 'World') AS Result;
+-- Output: 7
+--------------------------------------------------------------------------------------
+11. LOCATE()
+Similar to INSTR() but allows specifying a starting position.
+Syntax:
+LOCATE(substring, string, start_position)
+Example:
+SELECT LOCATE('o', 'Hello World', 6) AS Result;
+-- Output: 8
+---------------------------------------------------------------------------------------------
+12. LEFT()
+Extracts a specified number of characters from the left of a string.
+Syntax:
+LEFT(string, length)
+Example:
+SELECT LEFT('MySQL', 3) AS Result;
+-- Output: MyS
+----------------------------------------------------------------------------------------
+13. RIGHT()
+Extracts a specified number of characters from the right of a string.
+Syntax:
+RIGHT(string, length)
+Example:
+SELECT RIGHT('MySQL', 2) AS Result;
+-- Output: QL
+----------------------------------------------------------------------------------------
+14. LPAD()
+Pads the left side of a string with a specified character to a certain length.
+Syntax:
+LPAD(string, length, pad_string)
+Example:
+SELECT LPAD('123', 5, '0') AS Result;
+-- Output: 00123
+---------------------------------------------------------------------------------------------
+15. RPAD()
+Pads the right side of a string with a specified character to a certain length.
+Syntax:
+RPAD(string, length, pad_string)
+Example:
+SELECT RPAD('123', 5, '0') AS Result;
+-- Output: 12300
+-------------------------------------------------------------------------------------------------
+16. REVERSE()
+Reverses a string.
+Syntax:
+REVERSE(string)
+Example:
+SELECT REVERSE('MySQL') AS Result;
+-- Output: LQSyM
+--------------------------------------------------------------------------------------------
+17. FORMAT()
+Formats a number to include commas and a specific decimal precision.
+Syntax:
+FORMAT(number, decimal_places)
+Example:
+SELECT FORMAT(1234567.89, 2) AS Result;
+-- Output: 1,234,567.89
+-------------------------------------------------------------------------------------
+18. ASCII()
+Returns the ASCII code of the first character in a string.
+Syntax:
+ASCII(string)
+Example:
+SELECT ASCII('A') AS Result;
+-- Output: 65
+======================================================================================================================================================================
+----------------------------------------JOINS IN SQL -----------------------------------------------------------------
+1. JOINS WITHOUT USING JOIN KEYWORD:
+joining table bank and bankcustomer where accno are are same.
+
+mysql> select a.accno,a.name,a.balance,b.firstname,b.age from bank as a,bankcustomer as b where a.accno= b.accno;
++-------+-------+---------+-----------+------+
+| accno | name  | balance | firstname | age  |
++-------+-------+---------+-----------+------+
+|   101 | icici |   46865 | ved       |   22 |
+|   102 | icici |     465 | sam       |   21 |
+|   103 | icici |     605 | atharva   |   21 |
+|   104 | hdfc  |   12345 | adesh     |   19 |
+|   105 | hdfc  |   14545 | jai       |   31 |
++-------+-------+---------+-----------+------+
+5 rows in set (0.02 sec)
+
+2.SQL JOIN
+A JOIN clause is used to combine rows from two or more tables, based on a related column between them.
+
+Different Types of SQL JOINs
+Here are the different types of the JOINs in SQL:
+
+(INNER) JOIN: Returns records that have matching values in both tables
+LEFT (OUTER) JOIN: Returns all records from the left table, and the matched records from the right table
+RIGHT (OUTER) JOIN: Returns all records from the right table, and the matched records from the left table
+FULL (OUTER) JOIN: Returns all records when there is a match in either left or right table
+--------------------
+Example:JOINS of THREE TABLE  WITHOUT using JOIN as keyword
+mysql> select * from bank;
++-------+-------+---------+
+| accno | name  | balance |
++-------+-------+---------+
+|   101 | icici |   46865 |
+|   102 | icici |     465 |
+|   103 | icici |     605 |
+|   104 | hdfc  |   12345 |
+|   105 | hdfc  |   14545 |
+|   106 | hsbc  | 1404540 |
+|   107 | ubs   | 1407550 |
++-------+-------+---------+
+7 rows in set (0.00 sec)
+
+mysql> select * from bankcustomer;
++-------+-----------+------+
+| accno | FirstName | Age  |
++-------+-----------+------+
+|   101 | ved       |   22 |
+|   102 | sam       |   21 |
+|   103 | atharva   |   21 |
+|   104 | adesh     |   19 |
+|   105 | jai       |   31 |
++-------+-----------+------+
+5 rows in set (0.00 sec)
+
+mysql> select * frm address;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'frm address' at line 1
+mysql> select * from address;
++-------+------------+-------------+
+| accno | city       | state       |
++-------+------------+-------------+
+|   101 | hydrabad   | AP          |
+|   102 | aurangabad | maharashtra |
+|   103 | mumbai     | maharashtra |
+|   104 | pune       | maharashtra |
+|   105 | amritsar   | punjab      |
++-------+------------+-------------+
+5 rows in set (0.00 sec)
+
+mysql> select a.accno,a.name,a.balance,b.firstname,b.age,c.city,c.state from bank as a , bankcustomer as b, address as c where a.accno = b.accno and a.accno = c.accno;
++-------+-------+---------+-----------+------+------------+-------------+
+| accno | name  | balance | firstname | age  | city       | state       |
++-------+-------+---------+-----------+------+------------+-------------+
+|   101 | icici |   46865 | ved       |   22 | hydrabad   | AP          |
+|   102 | icici |     465 | sam       |   21 | aurangabad | maharashtra |
+|   103 | icici |     605 | atharva   |   21 | mumbai     | maharashtra |
+|   104 | hdfc  |   12345 | adesh     |   19 | pune       | maharashtra |
+|   105 | hdfc  |   14545 | jai       |   31 | amritsar   | punjab      |
++-------+-------+---------+-----------+------+------------+-------------+
+5 rows in set (0.03 sec)
+
+mysql>
