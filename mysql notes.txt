@@ -939,8 +939,8 @@ WHERE EXISTS
 What is SQL EXISTS?
 The EXISTS condition is primarily used to check the existence of rows returned by a subquery. It’s commonly used in scenarios where you need to check if a record exists in a related table, and you want to perform an action based on that result.
 
+NOTE: COMPATIBLE WITH ORACLE SQL SERVER.
 Syntax:
-
 SELECT column_name(s)
 FROM table_name
 WHERE EXISTS (
