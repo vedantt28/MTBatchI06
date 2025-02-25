@@ -682,16 +682,58 @@ The FULL OUTER JOIN keyword returns all records when there is a match in left (t
 
 Tip: FULL OUTER JOIN and FULL JOIN are the same.
 
-FULL OUTER JOIN Syntax
+it cant be used in mySQL
+FULL OUTER JOIN Syntax  --> it cant be used in mySQL
 SELECT column_name(s)
 FROM table1
 FULL OUTER JOIN table2
 ON table1.column_name = table2.column_name
 WHERE condition;
 
+SO for mySQl we use
+SELECT table1.id, table1.name, table2.city
+FROM table1
+LEFT JOIN table2 ON table1.id = table2.id
+UNION
+SELECT table2.id, table1.name, table2.city
+FROM table1
+RIGHT JOIN table2 ON table1.id = table2.id;
+
+Example:-
+mysql> SELECT a1.*, b1.* FROM bank as a1 LEFT JOIN bankcustomer as b1 ON a1.accno = b1.accno UNION SELECT a1.*, b1.* FROM bank as a1 RIGHT JOIN bankcustomer as b1 ON a1.accno = b1.accno;
++-------+-------+---------+-------+-----------+------+
+| accno | name  | balance | accno | FirstName | Age  |
++-------+-------+---------+-------+-----------+------+
+|   101 | icici |   46865 |   101 | ved       |   22 |
+|   102 | icici |     465 |   102 | sam       |   21 |
+|   103 | icici |     605 |   103 | atharva   |   21 |
+|   104 | hdfc  |   12345 |   104 | adesh     |   19 |
+|   105 | hdfc  |   14545 |   105 | jai       |   31 |
+|   106 | hsbc  | 1404540 |  NULL | NULL      | NULL |
+|   107 | ubs   | 1407550 |  NULL | NULL      | NULL |
+|   110 | sbi   |    1234 |  NULL | NULL      | NULL |
++-------+-------+---------+-------+-----------+------+
+8 rows in set (0.00 sec)
+-------------------------------------------------------------------------
 Note: FULL OUTER JOIN can potentially return very large result-sets!
 Note: The FULL OUTER JOIN keyword returns all matching records from both tables whether the other table matches or not. So, if there are rows in "Customers" that do not have matches in "Orders", or if there are rows in "Orders" that do not have matches in "Customers", those rows will be listed as well.
---------------------------------------------------------------
+------------------------------------------------------------------------
+====================================================================
+UNION  in SQL;
+
+UNION Syntax
+SELECT column_name(s) FROM table1
+UNION
+SELECT column_name(s) FROM table2;
+UNION ALL Syntax
+The UNION operator selects only distinct values by default. To allow duplicate values, use UNION ALL:
+
+SELECT column_name(s) FROM table1
+UNION ALL
+SELECT column_name(s) FROM table2;
+Note: The column names in the result-set are usually equal to the column names in the first SELECT statement.
+----------------------------------------------
+
 
 mysql> select * from bank;
 +-------+-------+---------+
@@ -764,7 +806,38 @@ mysql> select  a.*,b.* from bank as a right join bankcustomer as b on a.accno = 
 5 rows in set (0.00 sec)
 
 Explaination : here we can see data whose row value whose  bank accno = bankcustumer accno  only those columns are joined and which also includes all the other right table data;
--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+mysql> SELECT a1.*, b1.* FROM bank as a1 LEFT JOIN bankcustomer as b1 ON a1.accno = b1.accno UNION SELECT a1.*, b1.* FROM bank as a1 RIGHT JOIN bankcustomer as b1 ON a1.accno = b1.accno;
++-------+-------+---------+-------+-----------+------+
+| accno | name  | balance | accno | FirstName | Age  |
++-------+-------+---------+-------+-----------+------+
+|   101 | icici |   46865 |   101 | ved       |   22 |
+|   102 | icici |     465 |   102 | sam       |   21 |
+|   103 | icici |     605 |   103 | atharva   |   21 |
+|   104 | hdfc  |   12345 |   104 | adesh     |   19 |
+|   105 | hdfc  |   14545 |   105 | jai       |   31 |
+|   106 | hsbc  | 1404540 |  NULL | NULL      | NULL |
+|   107 | ubs   | 1407550 |  NULL | NULL      | NULL |
+|   110 | sbi   |    1234 |  NULL | NULL      | NULL |
++-------+-------+---------+-------+-----------+------+
+8 rows in set (0.00 sec)
+
+Explaination : here we can see data whose row value whose  bank accno = bankcustumer accno  only those columns are joined and which also includes all the other right table data and all other left table data;
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+========================================================
+1. Simple Cloning
+In this method, the clone table creates a copy of the original table’s structure and data, but constraints like primary keys, unique keys, and auto-increment properties are not preserved.
+
+Syntax
+
+CREATE TABLE clone_table SELECT * FROM original_table;
+----------------------------------------------------
+mysql> CREATE TABLE bank1 as select * from bank;  (as keyword is optional)
+Query OK, 8 rows affected (0.33 sec)
+Records: 8  Duplicates: 0  Warnings: 0
+
+mysql> select * from bank1;
+-----------------------------------------------------------------
 
 
 
