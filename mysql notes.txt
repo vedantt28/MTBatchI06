@@ -645,7 +645,12 @@ The INNER JOIN keyword selects records that have matching values in both tables.
 
 Note: The INNER JOIN keyword returns only rows with a match in both tables. Which means that if you have a product with no CategoryID, or with a CategoryID that is not present in the Categories table, 
 that record would not be returned in the result.
+------------------------------
+JOIN or INNER JOIN
+JOIN and INNER JOIN will return the same result.
 
+ IMPORTANT :--> INNER is the default join type for JOIN, so when you write JOIN the parser actually writes INNER JOIN.
+===========================================================================================================
 Syntax
 SELECT column_name(s)  /* here columns are of both the tables*/
 FROM table1
@@ -919,5 +924,29 @@ Syntax
 CREATE TABLE clone_table LIKE original_table;
 INSERT INTO clone_table SELECT * FROM original_table;
 ------------------------------------------------------------------------------
+===============================================================================================================
+The SQL EXISTS Operator
+The EXISTS operator is used to test for the existence of any record in a subquery.
+
+The EXISTS operator returns TRUE if the subquery returns one or more records.
+
+EXISTS Syntax
+SELECT column_name(s)
+FROM table_name
+WHERE EXISTS
+(SELECT column_name FROM table_name WHERE condition);
+-------------------------------------------------------------------------------
+What is SQL EXISTS?
+The EXISTS condition is primarily used to check the existence of rows returned by a subquery. It’s commonly used in scenarios where you need to check if a record exists in a related table, and you want to perform an action based on that result.
+
+Syntax:
+
+SELECT column_name(s)
+FROM table_name
+WHERE EXISTS (
+    SELECT column_name(s)
+    FROM subquery_table
+    WHERE condition
+);
 
 
