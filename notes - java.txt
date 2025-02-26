@@ -1,0 +1,90 @@
+Let's create the hello world Java program:
+
+class Simple{  
+    public static void main(String args[]){  
+     System.out.println("Hello Java");  
+    }  
+}  
+
+----------------------------------------------------------------------------------------------------------------------
+To compile:
+javac Simple.java
+
+To execute:
+java Simple
+
+Output:
+Hello Java
+Compilation Flow:
+
+When we compile Java program using javac tool, the Java compiler converts the source code into byte code.
+--------------------------------------------------------------------------------------------------------------------------
+Parameters used in First Java Program
+Let's see what is the meaning of class, public, static, void, main, String[], System.out.println().
+
+ 
+1.class keyword is used to declare a class in Java.
+2.public keyword is an access modifier that represents visibility. It means it is visible to all.
+3.static is a keyword. If we declare any method as static, it is known as the static method. The core advantage of the static method is that there is no need to create an object to invoke the static method. 
+4.The main() method is executed by the JVM, so it does not require creating an object to invoke the main() method. So, it saves memory.
+5.void is the return type of the method. It means it does not return any value.
+6.The main() method represents the starting point of the program.
+7.String[] args or String args[] is used for command line argument. We will discuss it in coming section.
+8.System.out.println() is used to print statement on the console. Here, System is a class, out is an object of the PrintStream class, println() is a method of the PrintStream class. 
+9.We will discuss the internal working of System.out.println() statement in the coming section.
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Input in Java:-
+package date1;
+
+import java.util.*;
+
+public class test2 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		//For Input create object of scanner class
+		Scanner ob = new Scanner(System.in);
+		
+		System.out.println("input:");
+		int a = ob.nextInt();
+		int b = ob.nextInt();
+		
+		System.out.println("Sum of 2 nos:"+(a+b));
+		
+	}
+
+}
+---------------------------------------------------------------------------------------------------------------------------------------------------
+Class in JAVA
+import java.util.*;
+
+public class test2 {
+	
+	int rollno;
+	String name,address;
+	
+	void input() {
+		Scanner ob = new Scanner(System.in);
+		System.out.println("ENter rolln , name ,address");
+		rollno = ob.nextInt();
+		name = ob.next();
+		address = ob.next();
+	}
+	
+	void display() {
+		System.out.println("The rollno is "+rollno);
+		System.out.println("The name is "+name);
+		System.out.println("The address is "+address);
+	}
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		test2 ob = new test2();
+		
+		ob.input();
+		ob.display();
+		
+		System.out.println("the rollno is "+ob.rollno+" the name is "+ob.name+" the address is "+ob.address);
+	}
+
+}
