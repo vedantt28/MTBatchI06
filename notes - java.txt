@@ -124,3 +124,84 @@ public class test4 {
 
 }
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Getter and Setter 
+import java.util.*;
+
+public class Employee {
+	
+	private int empno;
+	private String name,address;
+	private float salary;
+	
+	public Employee (int empno, String name,String address,float salary) {
+		this.empno = empno;
+		this.name = name;
+		this.address = address;
+		this.salary = salary;
+	}
+	
+	public Employee() {
+		
+	}
+	
+	
+	public int getEmpno() {
+		return empno;
+	}
+
+	public void setEmpno(int empno) {
+		this.empno = empno;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public float getSalary() {
+		return salary;
+	}
+
+	public void setSalary(float salary) {
+		this.salary = salary;
+	}
+	
+	
+	@Override
+	public String toString() {
+		return "Employee [empno=" + empno + ", name=" + name + ", address=" + address + ", salary=" + salary + "]";
+	}
+
+
+}
+
+--------------------------------------------------
+Another Pubilic Class;
+
+public class AccessPublic {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		Employee obj = new Employee(101,"Vedant","Aurangabad",1555000.50f);
+		System.out.println(obj);
+		obj.setEmpno(102);
+		System.out.println(obj.getEmpno());
+		System.out.println(obj.getName());
+		System.out.println(obj.getAddress());
+		System.out.println(obj.getSalary());
+	}
+
+}
+
