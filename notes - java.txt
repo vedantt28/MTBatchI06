@@ -88,3 +88,39 @@ public class test2 {
 	}
 
 }
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+import java.util.*;
+
+public class test4 {
+	int empno,salary;
+	String name,address,dept;
+
+	void input() {		
+		Scanner ob = new Scanner(System.in);
+		System.out.println("Enter empno , name ,address,dept,salary");
+		empno = ob.nextInt();
+                ob.nextLine();  // for input a full name use this nextLine()
+		name = ob.next();
+		address = ob.next();
+		dept = ob.next();
+		salary = ob.nextInt();
+	}
+	void display() {
+		System.out.println("The empnp is "+empno);
+		System.out.println("The name is "+name);
+		System.out.println("The address is "+address);
+		System.out.println("The dept is "+dept);
+		System.out.println("The salary is "+salary);
+	}
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		test4 ob = new test4();
+
+		ob.input();
+		ob.display();
+
+		System.out.println("the empno is :"+ob.empno+" the name is :"+ob.name+" the address is:"+ ob.address + " the dept is:" +ob.dept+ "the salary is :"+ob.salary );
+	}
+
+}
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
