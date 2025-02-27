@@ -359,7 +359,7 @@ public class test1_multilevel {
 	}
 
 }
-==========================================================================================================
+======================================================================================================================================
 -------------------------------------------------------------------------
 *super constructor will execute first.
 -----------------------------------------------------------------------
@@ -375,4 +375,61 @@ Bank has-a customer
 1. HAS - A Relationship
 Step 1: Create file bank.java
 Step 2: Create file Customer.java
-Step
+Step 3: Create mainprg.java
+
+Step 1:
+package temp;
+import java.util.*;
+
+public class bank {
+	int accno;
+	String bname, balance;
+	Customer cust;
+	public bank (int accno,String bname,String balance,Customer cust) {
+		this.accno = accno;
+		this.bname = bname;
+		this.balance = balance;
+		this.cust = cust;
+	}
+	@Override
+	public String toString() {
+		return "bank [accno=" + accno + ", bname=" + bname + ", balance=" + balance + ", cust=" + cust + "]";
+	}
+	
+	
+}
+------------------
+Step 2:
+package temp;
+
+public class Customer {
+	String cname,address;
+	public Customer(String cname,String address) {
+		this.cname = cname;
+		this.address = address;
+	}
+	@Override
+	public String toString() {
+		return "Customer [cname=" + cname + ", address=" + address + "]";
+	}
+	
+	
+
+}
+---------------------
+Step 3:
+package temp;
+
+public class mainprg {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Customer cs1 = new Customer("Vedant","Banglore");
+		Customer cs2 = new Customer("Kiran","Banglore");
+		bank bk1 = new bank(101,"SBI","232",cs1);
+		bank bk2 = new bank(101,"SBI","232",cs2);
+		System.out.println(bk1);
+	}
+
+}
+
