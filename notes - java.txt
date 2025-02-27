@@ -203,5 +203,176 @@ public class AccessPublic {
 		System.out.println(obj.getSalary());
 	}
 
+========================================================================================================================================================
+INHERITANCE:
+Parent class in inheritance cant be public
+we will create object of child class to access parent class
+
+-------------------------------------------------------------------------------
+Inheritance
+-------------------------------------------------------------------------------
+It is one of the oops concept
+Reuse of existing code. and we can add some more features to it.
+example :- iPhone10 to iPhone15 some new features are add to the older version.
+There are 5 types of Inheritance.
+1)single Inheritance
+2)multi-level Inheritance
+3)hierarchal Inheritance
+----------------------Java doesn't support---------------------------------
+4)multiple inheritance
+5)Hybrid inheritance(combination)
+------------------------------------------------------------------------------------
+we use the keyword extends to inherite the parent class into the child class.
+we use the keyword super to access the parent class variables and methods into the child class.
+1)The parent class should not be public
+2)We will create object of the child class
+3) The class name should be the child class name which contain the main ()
+4)parent class constructor will execute first then the child class constructor
+-------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------
+1.Single Inheritance Example:
+package temp;
+import java.util.*;
+
+class Student {  //This is a parent class and parent class cant be public and we create objects of the child class to access the parent class
+	int rollno;
+	String name,address;
+	
+	//this is parent class constructor/method which is executed using super() method and will execute first
+	public Student(int rollno, String name, String address) 
+	{
+		this.rollno = rollno;
+		this.name = name;
+		this.address = address;
+	}
+	
+	//this is parent class constructor/method which is executed using super() method and will execute first
+	void display()
+	{
+	System.out.println("the rollno is "+rollno+"The name is "+name+" The address is "+address);
+	}
+
 }
 
+// Note : the class in which main method is present should always be public 
+//this class is child class which access parent class Student using extends keyword
+public class test1_inheritance extends Student {
+	int phy,chem,bio,total,avg;
+
+	public test1_inheritance(int rollno, String name, String address, int phy, int chem, int bio) 
+	{
+		//super method access 
+		super(rollno, name, address);//parent class constructor will execute first(should be at top) and only then child class constructor will get executed
+		this.phy = phy;
+		this.chem = chem;
+		this.bio = bio;
+		this.total = phy+chem+bio;
+		this.avg =total/3;
+	}
+	
+	void display()
+	{
+		super.display();  
+		System.out.println("the physics marks is "+phy);
+		System.out.println("the chemistry marks is "+chem);
+		System.out.println("the biology marks is "+bio);
+		System.out.println("the physics marks is "+total);
+		System.out.println("the physics marks is "+avg);
+			
+	}
+	
+	public static void main(String[] args) {
+		test1_inheritance obj=new test1_inheritance(101,"sandip","bang",88,66,93);  // this will only insert values in the parent class first then the child class
+		obj.display();  // this will display the values
+	}
+}
+=================================================================================================================================
+2. Multilevel Inheritance:
+//Multilevel Inheritance;'-
+// NOTE: In Java, a class cannot directly access the grandparent’s members.
+
+
+
+package temp;
+
+//grandparent class : class 1
+class employee {
+	int empno;
+	String name , address;
+	
+	public employee ( int empno,String name,String address) {
+		this.empno = empno;
+		this.name = name;
+		this.address = address;
+	}
+	
+	void display_employee () {
+		System.out.println("Empno :"+empno+" Name:"+name+" Address:"+address);
+	}
+}
+
+// Parent class : Class 2  access class 1
+class dept extends employee  {
+	String loc , designation, dept;
+	
+	public dept ( int empno,String name,String address ,String loc,String designation, String dept) {
+		super(empno,name,address);  // parent class constructor will execute first
+		this.loc = loc;
+		this.designation = designation;
+		this.dept = dept;
+	}
+	
+	void display_dept() {
+		System.out.println(" loc :"+loc+" Designation:"+designation+" Dept:"+dept);
+	}
+}
+
+// Child Class : Class 3 access Class 1 and Class 2
+class salary extends dept  {
+	int salary , hra, income;
+	
+	public salary ( int empno,String name,String address ,String loc,String designation, String dept , int salary, int hra , int income) {
+		super(empno,name,address ,loc,designation,dept);
+		this.salary = salary;
+		this.hra = hra;
+		this.income = income;
+	}
+	
+	void display() {
+		super.display_employee();
+		super.display_dept();
+		System.out.println(" salary :"+salary+" hra:"+hra+" income:"+income);
+	}
+}
+
+
+
+// / Note : the class in which main method is present should always be public 
+public class test1_multilevel {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		salary ob = new salary(11,"Vedant","Kharadi","Pune","Java","IT",100000000,400000,200090);
+		ob.display();
+		
+
+	}
+
+}
+==========================================================================================================
+-------------------------------------------------------------------------
+*super constructor will execute first.
+-----------------------------------------------------------------------
+In inheritance the child class will depend upon the parent class. It is known as tight coupling.
+Java supports loose coupling.
+Inheritance(IS-A) relationship.
+Aggregation(HAS-A) relationship.
+example:-
+Employee has-a address
+Bank has-a customer
+
+=============================================================================================================
+1. HAS - A Relationship
+Step 1: Create file bank.java
+Step 2: Create file Customer.java
+Step
