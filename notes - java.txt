@@ -718,3 +718,67 @@ class abstract_method2 extends bank3{
 }
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+3.Interface method:-
+
+Interface:-
+It is similar to abstract class but it only contains abstract methods no concrete methods. we don't use the keyword abstract in this.
+We cannot create object for an interface.
+We have to implement the interface into a child class.
+We have to override the abstract methods into a child class and create object for the child class.
+By interface java performs the multiple Inheritance.
+we can declare a variable inside a interface .this is by default static(we can access it without object )
+and final(cann't be changed)
+--------------------------------------------------------------------------------------------------
+package temp;
+
+
+interface Interface11{
+	void display1();
+}
+
+
+interface Interface2 extends Interface11{
+	void display2();
+}
+
+interface Interface3{
+	void display3();
+}
+
+interface Interface4 {
+	void display4();
+}
+ 
+
+class test2_interface implements Interface2,Interface3,Interface4 {
+	
+	@Override
+	public void display1() {
+				System.out.println("display1");	 
+	}
+	
+	@Override
+	public void display4() {
+		System.out.println("display4");		
+	}
+	
+	@Override
+	public void display3() {
+		System.out.println("display3");			
+	}
+	
+	@Override
+	public void display2() {
+		System.out.println("display2");
+	}
+	
+	 public static void main(String[] args) {
+		test2_interface  ob = new test2_interface();
+		ob.display1(); 
+		ob.display2(); 
+		ob.display3();  
+		ob.display4();
+		
+	 }
+
+}
