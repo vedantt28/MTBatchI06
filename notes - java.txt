@@ -1215,3 +1215,76 @@ Thread synchronized means one thread complete excecution then the next thread wi
 example :-ATM (one person will do the transaction then the second person will do the transaction).
 ---------------------------------------------------------------------------------------------------------
 ----------------------------------------------------------------------------------------------------------------
+=============================================ARRAYS IN JAVA-=====================================================
+Java Arrays
+Arrays are used to store multiple values in a single variable, instead of declaring separate variables for each value.
+
+--------------------------
+package temp;
+import java.util.*;
+
+public class arrays_demo {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		int arr[] =  new int[5];
+		Scanner ob = new Scanner(System.in);
+		
+		System.out.println("Enter 5 numbers:");
+		for(int i=0;i<5;i++) {
+			arr[i] = ob.nextInt();
+		}
+		
+		System.out.println("Output");
+		for(int i=0;i<5;i++) {
+			System.out.print(arr[i]);
+		}
+		
+	}
+
+}
+------------------------------------
+package temp;
+import java.util.*;
+
+public class arrays_demo1 {
+
+		// TODO Auto-generated method stub
+		String rollno,name,address;
+		
+		void input(){
+			Scanner ob=new Scanner(System.in);
+			System.out.println("Enter rollno,name,address");
+			rollno=ob.nextLine();//it excepts space in between
+			name=ob.nextLine();
+			address=ob.nextLine();
+		}
+		
+		void display(){
+			System.out.println("the rollno is "+rollno);
+			System.out.println("the name is "+name);
+			System.out.println("the address is "+address);
+		}
+		
+		public static void main(String[] args) {
+
+			//int a[]=new int[5];
+			arrays_demo1[] obj=new arrays_demo1[3];//array of objects
+
+			for(int i=0;i<3;i++){
+				System.out.println("enter data of student no"+(i+1));
+				obj[i]=new arrays_demo1(); //constructor 3 times
+				obj[i].input(); //3 times input will be called
+			}
+			
+			for(int i=0;i<3;i++){
+				System.out.println("data of student no"+(i+1));
+				obj[i].display();
+			}	
+		}
+	}
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------
+=================================================================================================================================================================
+=================================================================================================================================================================
+
