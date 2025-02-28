@@ -457,7 +457,7 @@ example:-
 int sum(int a, int b);
 float sum(float a, float b);
 --------------------------------------------------------
-1.Method Overloading:
+1.Method Overloading:[compile time Polymorphism]
 package temp;
 
 // same name but different attributes/parameters is called test1_overloading
@@ -490,7 +490,7 @@ public class test1_overloading {
 }
 --------------------------------------------------------------------------------------------------------------------------------------
 2.---------------------------------------------------------------------------------------------------
-Method Overriding:- runtime Polymorphism.(abstract class, Interface).we need two or more class.
+Method Overriding:- [Runtime Polymorphism.](abstract class, Interface).we need two or more class.
 --------------------------------------------------------------------------------------------------
 program-16
 ---------------------
@@ -718,7 +718,7 @@ class abstract_method2 extends bank3{
 }
 
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-3.Interface method:-
+3.Interface method:-(Study this again)
 
 Interface:-
 It is similar to abstract class but it only contains abstract methods no concrete methods. we don't use the keyword abstract in this.
@@ -782,3 +782,436 @@ class test2_interface implements Interface2,Interface3,Interface4 {
 	 }
 
 }
+------------------------------------------------------------------
+-------------------------------------------------------------
+Enum Declaration: The Day enum defines constants for each day of the week.
+--------------------------------------------------------------------
+Accessing Enum Values: You can assign an enum value (Day.WEDNESDAY) to a variable.
+--------------------------------------------------------------------
+Switch Statement: Enums work well with switch statements for clean code.
+---------------------------------------------------------
+Loop Through Enum Values: The values() method returns an array of all constants in the enum, allowing iteration.
+---------------------------------------------------------------------------------------------------
+Method Overloading:-
+Method Overriding:-
+Abstract class
+Interface
+static keyword
+final keyword
+---------------------------------------------------------------------------------------------------
+polymorphism:-
+1)runtime polymorphism:-Method Overriding
+2)compile time polymorphism :-Method Overloading
+Method Overloading :- compile time Polymorphism. we need one class.
+The method name is same but the return type and parameter has different data type.
+example:-
+int sum(int a, int b);
+float sum(float a, float b);
+--------------------------------------------------------
+=============================STATIC METHOD=============================================================================================
+When a variable is declared as "static"
+, then a single copy of the variable is created and shared among all objects at the class level. Static variables are, essentially, global variables. All instances of the class share the same static variable.
+Cant access non static variable inside static method.
+[it always runs before the main program]
+-----------------------------------------
+The static keyword is a non-access modifier used for methods and attributes. Static methods/attributes can be accessed without creating an object of a class.
+---------------------------------------
+Important points for static variables:
+We can create static variables at class-level only. See here
+static block and static variables are executed in order they are present in a program.But If declared after the main program but it always runs before the main program
+Static variable can call by directly with the help of class only, we do not need to create object for the class in this.
+-------------------------------------------------------------------------------------------------------------------
+
+Example1:
+package temp;
+
+public class static_demo {
+
+	static int a=10,b=20,c;
+//	int te,cd;  these are non static cant be accessed in a static method
+	
+	static {
+		System.out.println("This is a static block");
+	}
+	
+	//FIrst Static blocks will execute then the main method
+	//Note: You cannot use non-static variables in a static method
+   //	    Cant access non static variable inside static method.
+	static void display() {
+		c=a+b;
+		System.out.println("Sum of two no:"+c);
+	}
+	
+	//Note : Static values can be changed and can be used in a non static method
+	void display1() {
+		a = 100;b=200;
+	}
+	
+	void display2(int a,int b) {
+		a = 1;b=2;
+		
+		System.out.println("Sum is :"+(a+b));
+	}
+	
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		//Note : Static and non-static variable can have same variable name
+		//So to use static varibale Use Syntax : class_name.variable 
+		int a = 111,b=222;
+		System.out.println("Value of a:"+a);
+		System.out.println("value of b:"+b);
+		System.out.println("Value of a:"+static_demo.a);
+		System.out.println("value of b:"+static_demo.b);
+		display();   //Note : This is a static method [Don`t need to use/declare object to invoke static methods]
+		
+//		-------------------------------------------------------------------
+		//display2 is non static method need to create object to invoke it
+		static_demo ob = new static_demo();
+		ob.display2(a,b);
+		
+		System.out.println("Value of a:"+a);
+		System.out.println("value of b:"+b);
+		display();   //Note : This is a static method [Don`t need to use/declare object to invoke static methods]
+		
+		ob.display2(a,b);
+		//wE CAN INVOKE STATIC METHOD and variables WITH CLASSNAME ALSO EXAMPLE: class_name.method_name  or class_name.variable_name
+		System.err.println("value of a :"+a);
+		System.err.println("value of b :"+b);
+		static_demo.display();
+		
+	}
+
+}
+-------------------------------------------------------------------------INNER CLASS ------------------------------------------------------------------------------------------------------
+===========================================================================================================================================================================================
+Java Inner Classes
+In Java, it is also possible to nest classes (a class within a class). The purpose of nested classes is to group classes that belong together, which makes your code more readable and maintainable.
+
+To access the inner class, create an object of the outer class, and then create an object of the inner class:
+-------------------------------------------------------------------------------------------------------------------------------------------------
+package temp;
+
+public class OuterClass {
+	
+	static int rollno = 10;
+	static String name = "sandip";
+	
+	static class inner{
+		void display() {
+			System.out.println("The rollno is "+rollno);
+			System.out.println("The name is "+name);
+			
+		}
+	}
+	
+    
+	//NOTE: Inner Class can be static,non-static and private
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		//Access inner Class and can create objects using --> Outerclass_name.inner_classname 
+		OuterClass.inner obj = new OuterClass.inner();
+		obj.display();
+	}
+
+}
+-----------------------------------------------------------------------------
+ final keyword
+-------------------------
+This is a done to protect the data.
+We can declare the variable as final, method as final and class as final.
+If we declare variable as final we have to assign it and it cannot be changed.
+If we declare method as final we cannot override it.
+If we declare a class as final we cannot inherite it.
+--------------------------------------------------------------------------------------------------
+package temp;
+
+public final class FinalDemo {
+	final int a=10;
+	
+	final void display(){
+		System.out.println("this is final display");
+	}
+	
+	public static void main(String[] args) {
+		FinalDemo ob=new FinalDemo();
+		ob.display();
+		System.out.println("the value of a is"+ob.a);
+		}
+}
+==================================================================================================================================================================
+-------------------------------------------WRAPPER CASS-----------------------------------------------------------------------------------------------------------
+Java Wrapper Classes
+Wrapper classes provide a way to use primitive data types (int, boolean, etc..) as objects.
+
+A Wrapper class in Java is one whose object wraps or contains primitive data types. When we create an object to a wrapper class, it contains a field and in this field, we can store primitive data types. In other words, we can wrap a primitive value into a wrapper class object. Let’s check on the wrapper classes in Java with examples:
+
+Need of Wrapper Classes
+There are certain needs for using the Wrapper class in Java as mentioned below:
+
+They convert primitive data types into objects. Objects are needed if we wish to modify the arguments passed into a method (because primitive types are passed by value).
+The classes in java.util package handle only objects and hence wrapper classes help in this case.
+Data structures in the Collection framework, such as ArrayList and Vector, store only objects (reference types) and not primitive types.
+An object is needed to support synchronization in multithreading.
+------------------------------------------------------------------------------------------------------------------------------------------------------
+package temp;
+
+public class parse_int {
+
+	
+	//As we r using the main clkass : We get an error of out of bound
+	// So we use Run configuration to input arguments in the string arg[]
+	public static void main(String[] arg) {
+		// TODO Auto-generated method st
+		String a = arg[0];
+		String b = arg[1];
+		String c = arg[2];
+		
+		// For conversion of data  type we have to using Wrapper class
+//		float x = Float.parseFloat(a);
+//		float y = Float.parseFloat(b);
+//		float z = Float.parseFloat(c);
+//		float sum = x+y+z;
+//		System.out.println("The Sum is :"+sum);
+		
+		System.out.println("The value of a:"+a);
+		System.out.println("The value of b:"+b);
+		System.out.println("The value of c:"+c);
+	}
+
+}
+==========================================================================================================================================================
+----------------------------------------------------------------------------------------------------------------------------------------------------------
+We have 3 classes String, StringBuffer, StringBuilder
+----------------------------------------------------------------------------------------------------------------------------------------------------------
+String :-Immutable(cannot be changed).
+String Buffer:-mutable(can be changed).
+StringBuilder:-mutable(can be changed).
+----------------------------------------------------------------------------------------------------------------------------------------------------------
+String is the type of objects that can store the sequence of characters enclosed by double quotes and every character is stored in 16 bits i.e using UTF 16-bit encoding. 
+A string acts the same as an array of characters. Java provides a robust and flexible API for handling strings, allowing for various operations such as concatenation, comparison, and manipulation.
+------------------
+1. STRINGS IN JAVA
+Ways of Creating a Java String
+There are two ways to create a string in Java: 
+
+String Literal
+Using new Keyword
+
+Syntax:  
+<String_Type> <string_variable> = “<sequence_of_string>”;  
+----------------------------------------------------------------------------------------------------------------------------
+1. String literal (Static Memory)
+To make Java more memory efficient (because no new objects are created if it exists already in the string constant pool). 
+
+Example:
+String demoString = “GeeksforGeeks”; 
+----------------------------------------------------------------------------------------------------------------------------
+2. Using new keyword (Heap Memory)
+String s = new String(“Welcome”);
+In such a case, JVM will create a new string object in normal (non-pool) heap memory and the literal “Welcome” will be placed in the string constant pool. The variable s will refer to the object in the heap (non-pool)
+In the given example only one object will be created. Firstly JVM will not find any string object with the value “Welcome” in the string constant pool, so it will create a new object. After that it will find the string with the value “Welcome” in the pool, it will not create a new object but will return the reference to the same instance.
+
+Example:
+String demoString = new String (“GeeksforGeeks”);
+-------------------------------------------------------------------------------------------------------------------------------
+// Comparison of 2 strings:-
+Why Not Use == for String Comparison?
+	== operator checks reference equality i.e. whether two variables point to the same memory location.
+	The .equals() method is used to compare the content of two strings.
+------------
+String equals() method in Java compares the content of two strings. It compares the value's character by character, irrespective of whether two strings are stored in the same memory location. 
+The String equals() method overrides the equals() method of the object class.
+false if any of the characters are not matched.
+true if all characters are matched in the Strings.
+---------------------------------------------------------------------------------------------------------------------
+Example1: String1:-
+
+String equals() method in Java compares the content of two strings. It compares the value's character by character, irrespective of whether two strings are stored in the same memory location. 
+
+The String equals() method overrides the equals() method of the object class.
+false if any of the characters are not matched.
+true if all characters are matched in the Strings.
+--------------------------------------------------------------------------
+package temp;
+
+public class String_demo1
+{
+public static void main(String[] args) 
+{
+	
+//	Why Not Use == for String Comparison?
+//	== operator checks reference equality i.e. whether two variables point to the same memory location.
+//	The .equals() method is used to compare the content of two strings.
+//----------------------------------------------------------------------------------------------------------------
+//String equals() method in Java compares the content of two strings. It compares the value's character by character, irrespective of whether two strings are stored in the same memory location. The String equals() method overrides the equals() method of the object class.
+//false if any of the characters are not matched.
+//true if all characters are matched in the Strings.
+	
+	//Here Creating Static String :Stores in Stack/Static Memory
+	//Whenever we create a new static string with a same string already created (so no new memory block is created) 
+	String s1="apple";
+	String s2="apple";              // here as same string no  new memory block is created
+	
+	//Creation of String in Heap Memory (Dynamic String using Dynamic memory allocation)
+	//Whenever we create a Dyamic String of every time . It Creates a new memory block every time.
+	String s3=new String("apple"); //new memory block is created
+	String s4=new String("apple"); //Here also new memory block will get created
+	
+	if(s1==s2) //constant pool       //This compares the memory block
+		System.out.println("true");
+	else
+		System.out.println("false");
+	
+	if(s1.equals(s2))   //Check if both strings are same or not(compare two strings)
+		System.out.println("true");
+	else
+		System.out.println("false");
+	
+	if(s1==s3)
+		System.out.println("true");
+	else
+		System.out.println("false");
+	
+	//Returns false because Creates new String in Heap memory
+	if(s4.equals(s3))
+		System.out.println("true");
+	else
+		System.out.println("false");
+}
+}
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
+package temp;
+
+public class String_demo2 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		String s1="Marlabs Software Solution";
+		String s2="Mphasis Software Solution";
+		
+		System.out.println(s1);
+		System.out.println(s1.toLowerCase());
+		System.out.println(s1.toUpperCase());
+		
+		System.out.println(s1.indexOf('M'));   //starts from 0 (gives index)
+ 	    System.out.println(s1.lastIndexOf('S')); //Gives last occuring index of character
+	    System.out.println(s1.equals(s2));         
+	    System.out.println(s1.equalsIgnoreCase(s2));
+	    
+	    System.out.println(s1.substring(1));//starts from 1
+	    System.out.println(s1.substring(5,6)); // starts from index 5 and length will be 6
+	    
+	    System.out.println(s1.charAt(0));//starts from 0
+	    System.out.println(s1.startsWith("Marlabs"));//return true or false
+	    
+	    System.out.println(s1.endsWith("Solution"));
+	    System.out.println(s1.replace("Marlabs", "Marlab"));
+	    
+	    System.out.println(s1.length());
+	    
+	    //Printing the string 
+	    char x[]=s1.toCharArray();//convert string to char array
+	    
+	    int len=x.length;
+	    System.out.println("the length of the array is "+len);
+	    for(int i=0;i<len;i++)
+	    	System.out.println(x[i]);
+    
+	}
+
+}
+===================================================================================================================================================
+4. Reverse the string 
+public class ReverseString {
+    public static void main(String[] args) {
+        String original = "Hello, World!";
+        char[] charArray = original.toCharArray();
+
+        // Swap characters from both ends of the array
+        for (int i = 0, j = charArray.length - 1; i < j; i++, j--) {
+            char temp = charArray[i];
+            charArray[i] = charArray[j];
+            charArray[j] = temp;
+        }
+
+        // Convert the character array back to a string
+        String reversed = new String(charArray);
+        System.out.println("Reversed String: " + reversed);
+    }
+}
+======================================================================================================================================================
+Why Java Strings are Immutable?
+Last Updated : 02 Dec, 2024
+In Java, strings are immutable means their values cannot be changed once they are created. This feature enhances performance, security, and thread safety. 
+In this article, we will explain why strings are immutable in Java and how this benefits Java applications.
+
+What Does Immutable Mean?
+An immutable object is an object whose state cannot be modified after it is created. In Java, this concept applies to strings, which means that once a string object is created, its content cannot be changed. If we try 
+to change a string, a new string object is created instead.
+
+How are Strings Immutable in Java?
+Strings in Java that are specified as immutable, as the content shared storage in a single pool to minimize creating a copy of the same value. String class and all wrapper classes in Java that include Boolean, 
+Character, Byte, Short, Integer, Long, Float, and Double are immutable. A user is free to create immutable classes of their own.
+======================================================================================================================================================
+------------------------------------------------------------------------------------------------------------------------------------------------------
+---------------------------------------STRING BUFFER (MUTABLE IN NATURE)------------------------------------------------------------------------------
+StringBuffer class in Java
+Last Updated : 03 Dec, 2024
+StringBuffer is a class in Java that represents a mutable sequence of characters. 
+It provides an alternative to the immutable String class, allowing you to modify the contents of a string without creating a new object every time.
+
+Features of StringBuffer Class
+Here are some important features and methods of the StringBuffer class:
+
+StringBuffer objects are mutable, meaning that you can change the contents of the buffer without creating a new object.
+The initial capacity of a StringBuffer can be specified when it is created, or it can be set later with the ensureCapacity() method.
+The append() method is used to add characters, strings, or other objects to the end of the buffer.
+The insert() method is used to insert characters, strings, or other objects at a specified position in the buffer.
+The delete() method is used to remove characters from the buffer.
+The reverse() method is used to reverse the order of the characters in the buffer.
+-----------------------------------------------------------------------------------
+package temp;
+
+public class String_buffer {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		// String Buffer is synchronized in nature
+		StringBuffer s1=new StringBuffer("My name ")	;
+		StringBuffer s2=new StringBuffer("is sandip ")	;
+		StringBuffer s3=new StringBuffer("I am 40 years old");
+		
+		// In String we cant append another stirng as it is immutablke in nature
+		System.out.println(s1.append(s2));
+		System.out.println(s1.append(s3));
+		
+		System.out.println(s1);//mutable the value of the string is changed
+		s1.setCharAt(0, 'm');
+		System.out.println(s1);
+		s1.setLength(20);
+		System.out.println(s1);
+		
+		System.out.println(s1.insert(20, " am a java Trainer"));
+		System.out.println(s1.delete(21, 25));
+		System.out.println(s1.reverse());
+		System.out.println(s1.reverse());
+		System.out.println(s1.capacity());
+
+	}
+
+}
+----------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------
+StringBuffer is synchronized. 
+with the methods we use the key word synchronized.
+in this after one method complete then the second method start excecuting.
+------------------------------------------------------------------------------------------------------
+StringBuilder is not synchronized.
+StringBuffer takes more time to execute than StringBuilder.
+Thread synchronized means one thread complete excecution then the next thread will start execute.
+example :-ATM (one person will do the transaction then the second person will do the transaction).
+---------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------
