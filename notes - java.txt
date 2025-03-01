@@ -1286,5 +1286,210 @@ public class arrays_demo1 {
 	}
 -----------------------------------------------------------------------------------------------------------------------------------------------------------------
 =================================================================================================================================================================
-=================================================================================================================================================================
+====================================================EXCEPTIONAL HANDLING=========================================================================================
+Exception Handling
+------------------------------
+There are 3 type of error.
+1)compile time error.(manually)
+2)logical error(manually)
+3)runtime error.
+In exception handling we will discuss about only runtime error.
+example:-
+-------------------
+1)dividing a number by zero.
+2)crossing the array limit.
+3)entering a character in place to number.
+The aim of exception handling is we don't want the program to terminate in between.
+The program should display an error message but the flow of the program should be till the end.
+----------------------------------------------------------------------------
+There are 5 keywords used to handle the runtime errors.
+1)try
+2)catch
+3)finally
+4)throw
+5)throws
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Exception handling in Java allows developers to manage runtime errors effectively by using mechanisms like try-catch block, finally block, throwing Exceptions, Custom Exception handling, etc.
 
+An Exception is an unwanted or unexpected event that occurs during the execution of a program (i.e., at runtime) and disrupts the normal flow of the program’s instructions. 
+It occurs when something unexpected things happen, like accessing an invalid index, dividing by zero, or trying to open a file that does not exist.
+
+Exception in Java is an error condition that occurs when something wrong happens during the program execution.
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Exception handling in Java is an effective mechanism for managing runtime errors to ensure the application’s regular flow is maintained. 
+Some Common examples of exceptions include ClassNotFoundException, IOException, SQLException, RemoteException, etc. 
+By handling these exceptions, Java enables developers to create robust and fault-tolerant applications.
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+Try-Catch Block
+A try-catch block in Java is a mechanism to handle exception. The try block contains code that might thrown an exception and the catch block is used to handles the exceptions if it occurs.
+
+try {
+    // Code that may throw an exception
+} catch (ExceptionType e) {
+    // Code to handle the exception
+}
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+finally Block
+The finally Block is used to execute important code regardless of weather an exception occurs or not.
+
+Note: finally block is always executes after the try-catch block. It is also used for resource cleanup.
+
+try {
+
+    // Code that may throw an exception
+
+} catch (ExceptionType e) {
+
+    // Code to handle the exception
+
+}finally{
+
+// cleanup code
+
+}
+===============================================================================================================================================
+Handling Multiple Exception
+We can handle multiple type of exceptions in Java by using multiple catch blocks, each catching a different type of exception.
+
+try {
+
+    // Code that may throw an exception
+
+} catch (ArithmeticException e) {
+
+    // Code to handle the exception
+
+} catch(ArrayIndexOutOfBoundsException e){
+
+    //Code to handle the anothert exception
+
+}catch(NumberFormatException e){
+
+    //Code to handle the anothert exception
+
+}
+========================================================================================================================================================
+package temp;
+
+import java.util.*;
+
+public class exception_demo {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		try {
+			Scanner ob =  new Scanner(System.in);
+			System.out.println("Enter 2 nos:");
+			int a = ob.nextInt();
+			int b = ob.nextInt();
+			int c = a/b;
+			
+			System.err.println("The result is:"+c);
+		}
+		catch(Exception xy) {
+			System.out.println("the Error is :"+xy);   
+			//When we enter in 0 there is arithmatic error is instead of giving the error and terminate the code we use try catch and print the error
+		}
+		finally {
+			
+//			The finally Block is used to execute important code regardless of weather an exception occurs or not.
+//			Note: finally block is always executes after the try-catch block. It is also used for resource cleanup.
+			System.out.println("The end ");
+		}
+		
+		System.out.println("The end of the Program");
+	}
+
+}
+
+-----------------------------------------------------------------
+In this case when there is error means we divide the number by zero.
+The catch will execute and display the error message. Then the rest part of the program will execute.
+-------------------------------------------------------------------------------------------------------
+when there is no error the catch block will not execute. The program will execute normally.
+--------------------------------------------------------------------------------------------------
+There are 3 type of Exception
+-------------------------------------------------------------------
+1)checked exception(we have to handle it first otherwise it will give compile time error.)
+i)IOException
+ii)SQLException
+iii)ClassNotFoundException
+iv)Interrupted Exception
+--------------------------------------------------------------------------------------------------------------------------------------------------------
+2)unchecked exception
+i)Arithmatic exception
+ii)NumberFormat exception
+iii)IndexOutOfBound exception
+iv)NullPointer exception
+v)InputMismatchException
+------------------------------------------------------------------------------------------------------------------------------------------------
+3)error
+i)StackOverFlow error
+ii)OutOfMemory error
+iii)Machine error
+-------------------------
+Try with multiple catch
+-------------------------------------
+//try with multiple catch
+package Thrusday;
+import java.util.*;
+public class ErrorExample 
+{
+public static void main(String[] args) 
+{
+	try
+	{
+Scanner ob=new Scanner(System.in);
+System.out.println("Enter 2 nos");
+int a=ob.nextInt();
+int b=ob.nextInt();
+int c=a/b;
+System.out.println("The result is "+c);
+	}
+	catch(ArithmeticException ae)
+	{
+		System.out.println("the error is "+ae);
+	}
+	catch(InputMismatchException ae)
+	{
+		System.out.println("the errorr is "+ae);
+	}
+	catch(Exception ae) //this can handle all types of error
+	{
+		System.out.println("the errorrr is "+ae);
+	}
+System.out.println("The end of the program");
+}
+}
+--------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------------------
+* we cannot put the catch(Exception ae) above the catch(ArithmeticException ae) or catch(InputMismatchException ae).
+This will show error unreachable code.
+because catch(Exception ae) will handle all type of errors.but catch(ArithmeticException ae) will handle only Arithmatic exception.
+-----------------------------------------------------------------------------------------------------------------------------------
+We generally don't write so many catch block .It will increase the line of code.
+and the execution time also increases.so it in not adviceable to write multiple catch block.
+----------------------------------------------------------------------------------------------------------------------------------
+try-catch :-if try is getting error then the catch with handle the error and catch will display the error.
+try-finally:-In this if try gets a error or not it doesn't matter the finally block will definitely execute.
+It handles the error and mainly used for closing of connection, file closing etc.
+Can we write try block without catch block.
+yes using finally block.
+----------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------
+* we cannot put the catch(Exception ae) above the catch(ArithmeticException ae) or catch(InputMismatchException ae).
+This will show error unreachable code.
+because catch(Exception ae) will handle all type of errors.but catch(ArithmeticException ae) will handle only Arithmatic exception.
+-----------------------------------------------------------------------------------------------------
+We generally don't write so many catch block .It will increase the line of code. 
+and the execution time also increases.so it in not adviceable to write multiple catch block.
+--------------------------------------------------------------------
+try-catch :-if try is getting error then the catch with handle the error and catch will display the error.
+try-finally:-In this if try gets a error or not it doesn't matter the finally block will definitely execute.
+It handles the error and mainly used for closing of connection, file closing etc.
+Can we write try block without catch block.
+yes using finally block.
+------------------------------------------------------------------------------------------------------------------------------------
+======================================================================================================================================
