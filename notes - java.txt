@@ -1493,3 +1493,76 @@ Can we write try block without catch block.
 yes using finally block.
 ------------------------------------------------------------------------------------------------------------------------------------
 ======================================================================================================================================
+----------------------------------------------------------------------------------------------
+StringBuffer is synchronized. 
+with the methods we use the key word synchronized.
+in this after one method complete then the second method start excecuting.
+------------------------------------------------------------------------------------------------------
+StringBuilder is not synchronized.
+StringBuffer takes more time to execute than StringBuilder.
+Thread synchronized means one thread complete excecution then the next thread will start execute.
+example :-ATM (one person will do the transaction then the second person will do the transaction).
+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+========================================================================================================================================================================================================
+------------------------------------------------------------------------------------------------------
+AutoBoxing and Unboxing
+-----------------------------------------------------------------------------------------------------
+The autoboxing convert the primative data types into it equivalent Wrapper type.
+The unboxing convert the wrapper type to primative datatype.
+-----------------------------------------------------------------------------------------------------
+========================================================================================================================================================================
+Collection Framework
+----------------------------------------------------------------
+int a[]=new int[5]; --------------->array the size is fixed.
+In case of Collection the size will be incrementing dynamically as we enter the data.
+---------------------------------------------------------------
+It is a collection of Object.
+It provides architecture to store, manipulate group of Objects.
+We can do all operations such as searching, sorting, inserting, delete, manipulating .
+1)Set 2)List 3)Map 4)queue
+Set is a Interface . It does not allow duplicate data.
+It has classes :-
+1)TreeSet :- It will display the data in the shorted order.
+2)HashSet :-It will display the data in random order.
+3)LinkedHashSet :- It will display the data in same order.
+---------------------------------------------------------------------------------
+==========================================================================================
+1.The Set Interface is present in java.util package and extends the Collection interface. 
+It is an unordered collection of objects in which duplicate values cannot be stored. 
+It is an interface that implements the mathematical set. This interface adds a feature that restricts the insertion of the duplicate elements.
+
+It has classes :-
+1)TreeSet :- It will display the data in the shorted order.
+2)HashSet :-It will display the data in random order.
+3)LinkedHashSet :- It will display the data in same order.
+------------------------------------------------------------------------------------------------
+
+
+
+===================================IMportant ===================================================================
+====================================JDBC============================================================================
+
+Program 1:
+package JDBCDEMO;
+
+import java.sql.*;   // you should import sql 
+
+public class First {
+
+	public static void main(String[] args) throws Exception{
+		// TODO Auto-generated method stub
+		
+		//create a memory block
+		Class.forName("com.mysql.cj.jdbc.Driver"); //Loadng Driver
+		
+//		getconnection is predefined method
+		//creating connection 
+		Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/batchi06","root","Admin@123");
+				
+		
+		Statement st = con.createStatement();
+		st.execute("create table mphasisstud(empno int, name varchar(30),address varchar(30))");
+		System.out.println("Table Created");
+	}
+
+}
