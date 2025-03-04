@@ -1566,3 +1566,43 @@ public class First {
 	}
 
 }
+
+=------------------------------------------------------------------------------------------------------================================
+------------------------------------------------------------------------------------------------------
+File 
+------------------------------------------------------------------------------------------------------
+1)It is used to store and manage data.
+2)Reading and writing of data into a file can be done using byte stream or character stream.(flow from source to destination)
+3)The process of reading and writing object into a file is known as serialization and de-serialization.
+4)we will be using java.io package.
+5)There are 2 types of stream by which we can read and write data into a file.
+a)byte stream
+b)character stream
+Under this byte stream and character stream we have different class.
+6)While working with file we have to handle exception because it throws checked Exception.
+Exceptions :- EOFException, FileNotFoundException, InterruptedIOException, IOException.
+--------------------------------------------------------------------------------------------------------------------
+We have some file class methods
+--------------------------------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------------------------------
+Byte stream(10101001001)
+--------------------------------------------------------------------------------------------------------------------
+There are 2 abstract classes.
+--------------------------------------------------------------------------------------------------------------------
+1)InputStream-reading data from the file.
+2)OutputStream-writing data into the file.
+
+we have some classes 
+1)BufferInputStream/BufferOutputStream
+2)FileInputStream/FileOutputStream
+3)ObjectInputStream/ObjectOutputStream ----serialization and de-serialization.
+4)DataInputStream/DataOutputStream ----to read and write primative data type into the file.
+-------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------
+The process of reading and writing object into a file is known as serialization and de-serialization.
+-------------------------------------------------------------------------------------------------------------------
+ObjectInputStream/ObjectOutputStream ----serialization and de-serialization.
+------------------------------------------------------------------------------------------------------------------------------------
+Serializable -it is a marker interface. There will be no abstract method in it.
+---------------------------------------------------------------------------------------------------------------------------------
+====================================================================JUNIT==========================================================
