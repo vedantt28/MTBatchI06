@@ -1606,3 +1606,21 @@ ObjectInputStream/ObjectOutputStream ----serialization and de-serialization.
 Serializable -it is a marker interface. There will be no abstract method in it.
 ---------------------------------------------------------------------------------------------------------------------------------
 ====================================================================JUNIT==========================================================
+Junit:- This is used for testing our functions.
+Developers have to do 2 types of Testing
+1)unit test
+2)integration testing
+------------------------------------------------------------------------------------------------------------------------------------
+----------------------------------------------------------
+Annotation
+--------------------
+1)@BeforeClass:- This annotation specifies that method will be invoked only once ,before starting all the tests.
+
+2)@Before :- This annotation specifies that method will be invoked before each test.
+
+3)@After:- This annotation specifies that method will be invoked after each test.
+
+4)@AfterClass :-  This annotation specifies that method will be invoked only once ,after finishing all the tests.
+
+---------------------------------------------------------------------------------------
+=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=----------=============--==========-=-=--=-
