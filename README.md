@@ -1,3 +1,5 @@
-# MTBatchI06
+# BatchI06
 
-Welcome Github!!
+9777237288
+
+sandipmohapatra123@gmail.com
