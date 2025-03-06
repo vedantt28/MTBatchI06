@@ -1,0 +1,12 @@
+Servlet
+-----------------
+It is a server side program.
+There are 2 type servlet
+1)GenericServlet
+2)HttpServlet
+In servlet we don't have the main method.
+we have lifecycle method.
+1)init():- Memory block created.(1 time during starting of program.)
+2)service():- It works for n no of times.It takes the request form the client and give response.
+3)destroy() :- Memory block released.(1 time during closing the program)
+----------------------------------------------------------------------------------------------------------------------------------------------
